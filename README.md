@@ -37,7 +37,7 @@ A estrutura do repositório é organizada da seguinte forma:
   - Entender o uso do `tidyverse` e do pacote `dplyr`.
   - Manipular o conjunto de dados `gapminder` usando diferentes verbos `dplyr`.
   - Combinar diferentes verbos `dplyr` para obter os resultados desejados.
-- **Acessar**: [Notebook do Projeto](notebooks/Project1/data_manipulation_with_dplyr.ipynb)
+- **Acessar**: [Notebook do Projeto](notebooks/Dplyr-Manipulation/dplyr-manipulation.nb.html)
 
 ## 🛠 Como Usar
 

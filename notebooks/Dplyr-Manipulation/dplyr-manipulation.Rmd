@@ -1,0 +1,16 @@
+---
+title: "Data Manipulation with dplyr in R"
+output: html_notebook
+---
+
+Bem-vindo ao projeto: Manipulação de dados com dplyr em R. Neste projeto, você aprenderá como manipular dados com o pacote dplyr em R. Ao final deste projeto, você entenderá como usar diferentes verbos dplyr, como o verbo de seleção, o verbo de filtro, o verbo de organização, o verbo de mutação, o verbo de resumo e o verbo group_by para manipular o conjunto de dados do gapminder. Além disso, você aprenderá como combinar diferentes verbos dplyr para manipular o conjunto de dados gapminder para obter o resultado desejado. Observe que você não precisa ser um analista de dados especialista, cientista de dados ou analista estatístico para ter sucesso neste projeto guiado, apenas uma familiaridade com a linguagem R será suficiente.
+
+```{r}
+plot(cars)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
