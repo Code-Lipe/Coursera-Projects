@@ -28,10 +28,6 @@ A estrutura do repositório é organizada da seguinte forma:
   - **`Project1/`**: Resultados do Projeto 1
   - **`Project2/`**: Resultados do Projeto 2
 
-- **`docs/`**: Documentação adicional e notas
-  - **`Project1/`**: Documentação e notas do Projeto 1
-  - **`Project2/`**: Documentação e notas do Projeto 2
-
 ## 🌟 Projetos em Destaque
 
 ### 1. **Data Manipulation with dplyr in R**
