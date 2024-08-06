@@ -5,12 +5,63 @@ output: html_notebook
 
 Bem-vindo ao projeto: Manipulação de dados com dplyr em R. Neste projeto, você aprenderá como manipular dados com o pacote dplyr em R. Ao final deste projeto, você entenderá como usar diferentes verbos dplyr, como o verbo de seleção, o verbo de filtro, o verbo de organização, o verbo de mutação, o verbo de resumo e o verbo group_by para manipular o conjunto de dados do gapminder. Além disso, você aprenderá como combinar diferentes verbos dplyr para manipular o conjunto de dados gapminder para obter o resultado desejado. Observe que você não precisa ser um analista de dados especialista, cientista de dados ou analista estatístico para ter sucesso neste projeto guiado, apenas uma familiaridade com a linguagem R será suficiente.
 
+## **Sobre o Tidyverse**
+
+O [tidyverse](https://tidyverse.org) é uma **coleção opinativa de pacotes R** projetados para ciência de dados. Todos os pacotes compartilham uma filosofia de design subjacente, gramática e estruturas de dados.
+
+### 1. **Instalando e Conhecendo os Pacotes**
+
+O [dplyr](https://dplyr.tidyverse.org) é uma gramática de manipulação de dados que fornece um conjunto consistente de verbos que ajudam você a resolver os desafios mais comuns de manipulação de dados. Já o **Gapminder data** são trechos dos dados do Gapminder sobre expectativa de vida, PIB per capita e população por país.
+
 ```{r}
-plot(cars)
+install.packages("dplyr")
+install.packages("gapminder")
+
+library(dplyr)
+library(gapminder)
 ```
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+### 2. **Olhando o Dataset e Checando a Estrutura**
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+O [glimpse()](https://dplyr.tidyverse.org/reference/glimpse.html) é como uma versão transposta de print() e str(): as colunas percorrem a página e os dados são executados. Isso torna possível ver todas as colunas em um quadro de dados. É um pouco como aplicado a um quadro de dados mas ele tenta mostrar o máximo de dados possível (e sempre mostra os dados subjacentes, mesmo quando aplicado para uma fonte de dados remota.) O [str()](https://rdrr.io/r/utils/str.html) exibe de forma compacta a estrutura interna de um objeto R.
 
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+```{r}
+# Observando o dataset
+gapminder
+
+# Conhecendo a estrutura
+glimpse(gapminder)
+
+# O mesmo objetivo do glimpse
+str(gapminder) 
+```
+
+### 3. **O Verbo Select**
+
+O [select()](https://sparkbyexamples.com/r-programming/r-select-function-from-dplyr/) é uma função do pacote R que é usada para selecionar variáveis de quadro de dados por nome/índice e também é usada para renomear variáveis ao selecionar e descartar variáveis por nome.
+
+```{r}
+# Selecione as colunas de país e continente
+gapminder %>%
+  select(country, continent)
+
+# Armazene o resultado em uma variável chamada country_con
+country_con <- gapminder %>%
+  select(country, continent)
+```
+
+### 4. **O Verbo Filter**
+
+A função [filter()](https://sparkbyexamples.com/r-programming/r-dplyr-filter/) do package **dplyr** é usada para filtrar as linhas do quadro de dados em R. Observe que filter() não filtra os dados, em vez disso, retém todas as linhas que satisfazem a condição especificada.
+
+```{r}
+# Filtrar o conjunto de dados gapminder para o ano de 1962
+gapminder %>%
+  filter(year == 1962)
+
+# Filtro para China em 2002
+gapminder %>%
+  filter(year == 2002, country == "China")
+```
+
+

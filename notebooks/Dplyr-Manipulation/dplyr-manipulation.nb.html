@@ -1763,25 +1763,100 @@ para obter o resultado desejado. Observe que você não precisa ser um
 analista de dados especialista, cientista de dados ou analista
 estatístico para ter sucesso neste projeto guiado, apenas uma
 familiaridade com a linguagem R será suficiente.</p>
+<div id="sobre-o-tidyverse" class="section level2">
+<h2><strong>Sobre o Tidyverse</strong></h2>
+<p>O <a href="https://tidyverse.org">tidyverse</a> é uma <strong>coleção
+opinativa de pacotes R</strong> projetados para ciência de dados. Todos
+os pacotes compartilham uma filosofia de design subjacente, gramática e
+estruturas de dados.</p>
+<div id="instalando-e-conhecendo-os-pacotes" class="section level3">
+<h3>1. <strong>Instalando e Conhecendo os Pacotes</strong></h3>
+<p>O <a href="https://dplyr.tidyverse.org">dplyr</a> é uma gramática de
+manipulação de dados que fornece um conjunto consistente de verbos que
+ajudam você a resolver os desafios mais comuns de manipulação de dados.
+Já o <strong>Gapminder data</strong> são trechos dos dados do Gapminder
+sobre expectativa de vida, PIB per capita e população por país.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGxvdChjYXJzKVxuYGBgIn0= -->
-<pre class="r"><code>plot(cars)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW5zdGFsbC5wYWNrYWdlcyhcImRwbHlyXCIpXG5pbnN0YWxsLnBhY2thZ2VzKFwiZ2FwbWluZGVyXCIpXG5cbmxpYnJhcnkoZHBseXIpXG5saWJyYXJ5KGdhcG1pbmRlcilcbmBgYCJ9 -->
+<pre class="r"><code>install.packages(&quot;dplyr&quot;)
+install.packages(&quot;gapminder&quot;)
+
+library(dplyr)
+library(gapminder)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Add a new chunk by clicking the <em>Insert Chunk</em> button on the
-toolbar or by pressing <em>Ctrl+Alt+I</em>.</p>
-<p>When you save the notebook, an HTML file containing the code and
-output will be saved alongside it (click the <em>Preview</em> button or
-press <em>Ctrl+Shift+K</em> to preview the HTML file).</p>
-<p>The preview shows you a rendered HTML copy of the contents of the
-editor. Consequently, unlike <em>Knit</em>, <em>Preview</em> does not
-run any R code chunks. Instead, the output of the chunk when it was last
-run in the editor is displayed.</p>
+</div>
+<div id="olhando-o-dataset-e-checando-a-estrutura" class="section level3">
+<h3>2. <strong>Olhando o Dataset e Checando a Estrutura</strong></h3>
+<p>O <a href="https://dplyr.tidyverse.org/reference/glimpse.html">glimpse()</a>
+é como uma versão transposta de print() e str(): as colunas percorrem a
+página e os dados são executados. Isso torna possível ver todas as
+colunas em um quadro de dados. É um pouco como aplicado a um quadro de
+dados mas ele tenta mostrar o máximo de dados possível (e sempre mostra
+os dados subjacentes, mesmo quando aplicado para uma fonte de dados
+remota.) O <a href="https://rdrr.io/r/utils/str.html">str()</a> exibe de
+forma compacta a estrutura interna de um objeto R.</p>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBPYnNlcnZhbmRvIG8gZGF0YXNldFxuZ2FwbWluZGVyXG5cbiMgQ29uaGVjZW5kbyBhIGVzdHJ1dHVyYVxuZ2xpbXBzZShnYXBtaW5kZXIpXG5cbiMgTyBtZXNtbyBvYmpldGl2byBkbyBnbGltcHNlXG5zdHIoZ2FwbWluZGVyKSBcbmBgYCJ9 -->
+<pre class="r"><code># Observando o dataset
+gapminder
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkRhdGEgTWFuaXB1bGF0aW9uIHdpdGggZHBseXIgaW4gUiINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCkJlbS12aW5kbyBhbyBwcm9qZXRvOiBNYW5pcHVsYcOnw6NvIGRlIGRhZG9zIGNvbSBkcGx5ciBlbSBSLiBOZXN0ZSBwcm9qZXRvLCB2b2PDqiBhcHJlbmRlcsOhIGNvbW8gbWFuaXB1bGFyIGRhZG9zIGNvbSBvIHBhY290ZSBkcGx5ciBlbSBSLiBBbyBmaW5hbCBkZXN0ZSBwcm9qZXRvLCB2b2PDqiBlbnRlbmRlcsOhIGNvbW8gdXNhciBkaWZlcmVudGVzIHZlcmJvcyBkcGx5ciwgY29tbyBvIHZlcmJvIGRlIHNlbGXDp8OjbywgbyB2ZXJibyBkZSBmaWx0cm8sIG8gdmVyYm8gZGUgb3JnYW5pemHDp8OjbywgbyB2ZXJibyBkZSBtdXRhw6fDo28sIG8gdmVyYm8gZGUgcmVzdW1vIGUgbyB2ZXJibyBncm91cF9ieSBwYXJhIG1hbmlwdWxhciBvIGNvbmp1bnRvIGRlIGRhZG9zIGRvIGdhcG1pbmRlci4gQWzDqW0gZGlzc28sIHZvY8OqIGFwcmVuZGVyw6EgY29tbyBjb21iaW5hciBkaWZlcmVudGVzIHZlcmJvcyBkcGx5ciBwYXJhIG1hbmlwdWxhciBvIGNvbmp1bnRvIGRlIGRhZG9zIGdhcG1pbmRlciBwYXJhIG9idGVyIG8gcmVzdWx0YWRvIGRlc2VqYWRvLiBPYnNlcnZlIHF1ZSB2b2PDqiBuw6NvIHByZWNpc2Egc2VyIHVtIGFuYWxpc3RhIGRlIGRhZG9zIGVzcGVjaWFsaXN0YSwgY2llbnRpc3RhIGRlIGRhZG9zIG91IGFuYWxpc3RhIGVzdGF0w61zdGljbyBwYXJhIHRlciBzdWNlc3NvIG5lc3RlIHByb2pldG8gZ3VpYWRvLCBhcGVuYXMgdW1hIGZhbWlsaWFyaWRhZGUgY29tIGEgbGluZ3VhZ2VtIFIgc2Vyw6Egc3VmaWNpZW50ZS4NCg0KYGBge3J9DQpwbG90KGNhcnMpDQpgYGANCg0KQWRkIGEgbmV3IGNodW5rIGJ5IGNsaWNraW5nIHRoZSAqSW5zZXJ0IENodW5rKiBidXR0b24gb24gdGhlIHRvb2xiYXIgb3IgYnkgcHJlc3NpbmcgKkN0cmwrQWx0K0kqLg0KDQpXaGVuIHlvdSBzYXZlIHRoZSBub3RlYm9vaywgYW4gSFRNTCBmaWxlIGNvbnRhaW5pbmcgdGhlIGNvZGUgYW5kIG91dHB1dCB3aWxsIGJlIHNhdmVkIGFsb25nc2lkZSBpdCAoY2xpY2sgdGhlICpQcmV2aWV3KiBidXR0b24gb3IgcHJlc3MgKkN0cmwrU2hpZnQrSyogdG8gcHJldmlldyB0aGUgSFRNTCBmaWxlKS4NCg0KVGhlIHByZXZpZXcgc2hvd3MgeW91IGEgcmVuZGVyZWQgSFRNTCBjb3B5IG9mIHRoZSBjb250ZW50cyBvZiB0aGUgZWRpdG9yLiBDb25zZXF1ZW50bHksIHVubGlrZSAqS25pdCosICpQcmV2aWV3KiBkb2VzIG5vdCBydW4gYW55IFIgY29kZSBjaHVua3MuIEluc3RlYWQsIHRoZSBvdXRwdXQgb2YgdGhlIGNodW5rIHdoZW4gaXQgd2FzIGxhc3QgcnVuIGluIHRoZSBlZGl0b3IgaXMgZGlzcGxheWVkLg0K</div>
+# Conhecendo a estrutura
+glimpse(gapminder)
+
+# O mesmo objetivo do glimpse
+str(gapminder) </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="o-verbo-select" class="section level3">
+<h3>3. <strong>O Verbo Select</strong></h3>
+<p>O <a href="https://sparkbyexamples.com/r-programming/r-select-function-from-dplyr/">select()</a>
+é uma função do pacote R que é usada para selecionar variáveis de quadro
+de dados por nome/índice e também é usada para renomear variáveis ao
+selecionar e descartar variáveis por nome.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBTZWxlY2lvbmUgYXMgY29sdW5hcyBkZSBwYcOtcyBlIGNvbnRpbmVudGVcbmdhcG1pbmRlciAlPiVcbiAgc2VsZWN0KGNvdW50cnksIGNvbnRpbmVudClcblxuIyBBcm1hemVuZSBvIHJlc3VsdGFkbyBlbSB1bWEgdmFyacOhdmVsIGNoYW1hZGEgY291bnRyeV9jb25cbmNvdW50cnlfY29uIDwtIGdhcG1pbmRlciAlPiVcbiAgc2VsZWN0KGNvdW50cnksIGNvbnRpbmVudClcbmBgYCJ9 -->
+<pre class="r"><code># Selecione as colunas de país e continente
+gapminder %&gt;%
+  select(country, continent)
+
+# Armazene o resultado em uma variável chamada country_con
+country_con &lt;- gapminder %&gt;%
+  select(country, continent)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="o-verbo-filter" class="section level3">
+<h3>4. <strong>O Verbo Filter</strong></h3>
+<p>A função <a href="https://sparkbyexamples.com/r-programming/r-dplyr-filter/">filter()</a>
+do package <strong>dplyr</strong> é usada para filtrar as linhas do
+quadro de dados em R. Observe que filter() não filtra os dados, em vez
+disso, retém todas as linhas que satisfazem a condição especificada.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBGaWx0cmFyIG8gY29uanVudG8gZGUgZGFkb3MgZ2FwbWluZGVyIHBhcmEgbyBhbm8gZGUgMTk2MlxuZ2FwbWluZGVyICU+JVxuICBmaWx0ZXIoeWVhciA9PSAxOTYyKVxuXG4jIEZpbHRybyBwYXJhIENoaW5hIGVtIDIwMDJcbmdhcG1pbmRlciAlPiVcbiAgZmlsdGVyKHllYXIgPT0gMjAwMiwgY291bnRyeSA9PSBcIkNoaW5hXCIpXG5gYGAifQ== -->
+<pre class="r"><code># Filtrar o conjunto de dados gapminder para o ano de 1962
+gapminder %&gt;%
+  filter(year == 1962)
+
+# Filtro para China em 2002
+gapminder %&gt;%
+  filter(year == 2002, country == &quot;China&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+</div>
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkRhdGEgTWFuaXB1bGF0aW9uIHdpdGggZHBseXIgaW4gUiINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCkJlbS12aW5kbyBhbyBwcm9qZXRvOiBNYW5pcHVsYcOnw6NvIGRlIGRhZG9zIGNvbSBkcGx5ciBlbSBSLiBOZXN0ZSBwcm9qZXRvLCB2b2PDqiBhcHJlbmRlcsOhIGNvbW8gbWFuaXB1bGFyIGRhZG9zIGNvbSBvIHBhY290ZSBkcGx5ciBlbSBSLiBBbyBmaW5hbCBkZXN0ZSBwcm9qZXRvLCB2b2PDqiBlbnRlbmRlcsOhIGNvbW8gdXNhciBkaWZlcmVudGVzIHZlcmJvcyBkcGx5ciwgY29tbyBvIHZlcmJvIGRlIHNlbGXDp8OjbywgbyB2ZXJibyBkZSBmaWx0cm8sIG8gdmVyYm8gZGUgb3JnYW5pemHDp8OjbywgbyB2ZXJibyBkZSBtdXRhw6fDo28sIG8gdmVyYm8gZGUgcmVzdW1vIGUgbyB2ZXJibyBncm91cF9ieSBwYXJhIG1hbmlwdWxhciBvIGNvbmp1bnRvIGRlIGRhZG9zIGRvIGdhcG1pbmRlci4gQWzDqW0gZGlzc28sIHZvY8OqIGFwcmVuZGVyw6EgY29tbyBjb21iaW5hciBkaWZlcmVudGVzIHZlcmJvcyBkcGx5ciBwYXJhIG1hbmlwdWxhciBvIGNvbmp1bnRvIGRlIGRhZG9zIGdhcG1pbmRlciBwYXJhIG9idGVyIG8gcmVzdWx0YWRvIGRlc2VqYWRvLiBPYnNlcnZlIHF1ZSB2b2PDqiBuw6NvIHByZWNpc2Egc2VyIHVtIGFuYWxpc3RhIGRlIGRhZG9zIGVzcGVjaWFsaXN0YSwgY2llbnRpc3RhIGRlIGRhZG9zIG91IGFuYWxpc3RhIGVzdGF0w61zdGljbyBwYXJhIHRlciBzdWNlc3NvIG5lc3RlIHByb2pldG8gZ3VpYWRvLCBhcGVuYXMgdW1hIGZhbWlsaWFyaWRhZGUgY29tIGEgbGluZ3VhZ2VtIFIgc2Vyw6Egc3VmaWNpZW50ZS4NCg0KIyMgKipTb2JyZSBvIFRpZHl2ZXJzZSoqDQoNCk8gW3RpZHl2ZXJzZV0oaHR0cHM6Ly90aWR5dmVyc2Uub3JnKSDDqSB1bWEgKipjb2xlw6fDo28gb3BpbmF0aXZhIGRlIHBhY290ZXMgUioqIHByb2pldGFkb3MgcGFyYSBjacOqbmNpYSBkZSBkYWRvcy4gVG9kb3Mgb3MgcGFjb3RlcyBjb21wYXJ0aWxoYW0gdW1hIGZpbG9zb2ZpYSBkZSBkZXNpZ24gc3ViamFjZW50ZSwgZ3JhbcOhdGljYSBlIGVzdHJ1dHVyYXMgZGUgZGFkb3MuDQoNCiMjIyAxLiAqKkluc3RhbGFuZG8gZSBDb25oZWNlbmRvIG9zIFBhY290ZXMqKg0KDQpPIFtkcGx5cl0oaHR0cHM6Ly9kcGx5ci50aWR5dmVyc2Uub3JnKSDDqSB1bWEgZ3JhbcOhdGljYSBkZSBtYW5pcHVsYcOnw6NvIGRlIGRhZG9zIHF1ZSBmb3JuZWNlIHVtIGNvbmp1bnRvIGNvbnNpc3RlbnRlIGRlIHZlcmJvcyBxdWUgYWp1ZGFtIHZvY8OqIGEgcmVzb2x2ZXIgb3MgZGVzYWZpb3MgbWFpcyBjb211bnMgZGUgbWFuaXB1bGHDp8OjbyBkZSBkYWRvcy4gSsOhIG8gKipHYXBtaW5kZXIgZGF0YSoqIHPDo28gdHJlY2hvcyBkb3MgZGFkb3MgZG8gR2FwbWluZGVyIHNvYnJlIGV4cGVjdGF0aXZhIGRlIHZpZGEsIFBJQiBwZXIgY2FwaXRhIGUgcG9wdWxhw6fDo28gcG9yIHBhw61zLg0KDQpgYGB7cn0NCmluc3RhbGwucGFja2FnZXMoImRwbHlyIikNCmluc3RhbGwucGFja2FnZXMoImdhcG1pbmRlciIpDQoNCmxpYnJhcnkoZHBseXIpDQpsaWJyYXJ5KGdhcG1pbmRlcikNCmBgYA0KDQojIyMgMi4gKipPbGhhbmRvIG8gRGF0YXNldCBlIENoZWNhbmRvIGEgRXN0cnV0dXJhKioNCg0KTyBbZ2xpbXBzZSgpXShodHRwczovL2RwbHlyLnRpZHl2ZXJzZS5vcmcvcmVmZXJlbmNlL2dsaW1wc2UuaHRtbCkgw6kgY29tbyB1bWEgdmVyc8OjbyB0cmFuc3Bvc3RhIGRlIHByaW50KCkgZSBzdHIoKTogYXMgY29sdW5hcyBwZXJjb3JyZW0gYSBww6FnaW5hIGUgb3MgZGFkb3Mgc8OjbyBleGVjdXRhZG9zLiBJc3NvIHRvcm5hIHBvc3PDrXZlbCB2ZXIgdG9kYXMgYXMgY29sdW5hcyBlbSB1bSBxdWFkcm8gZGUgZGFkb3MuIMOJIHVtIHBvdWNvIGNvbW8gYXBsaWNhZG8gYSB1bSBxdWFkcm8gZGUgZGFkb3MgbWFzIGVsZSB0ZW50YSBtb3N0cmFyIG8gbcOheGltbyBkZSBkYWRvcyBwb3Nzw612ZWwgKGUgc2VtcHJlIG1vc3RyYSBvcyBkYWRvcyBzdWJqYWNlbnRlcywgbWVzbW8gcXVhbmRvIGFwbGljYWRvIHBhcmEgdW1hIGZvbnRlIGRlIGRhZG9zIHJlbW90YS4pIE8gW3N0cigpXShodHRwczovL3JkcnIuaW8vci91dGlscy9zdHIuaHRtbCkgZXhpYmUgZGUgZm9ybWEgY29tcGFjdGEgYSBlc3RydXR1cmEgaW50ZXJuYSBkZSB1bSBvYmpldG8gUi4NCg0KYGBge3J9DQojIE9ic2VydmFuZG8gbyBkYXRhc2V0DQpnYXBtaW5kZXINCg0KIyBDb25oZWNlbmRvIGEgZXN0cnV0dXJhDQpnbGltcHNlKGdhcG1pbmRlcikNCg0KIyBPIG1lc21vIG9iamV0aXZvIGRvIGdsaW1wc2UNCnN0cihnYXBtaW5kZXIpIA0KYGBgDQoNCiMjIyAzLiAqKk8gVmVyYm8gU2VsZWN0KioNCg0KTyBbc2VsZWN0KCldKGh0dHBzOi8vc3BhcmtieWV4YW1wbGVzLmNvbS9yLXByb2dyYW1taW5nL3Itc2VsZWN0LWZ1bmN0aW9uLWZyb20tZHBseXIvKSDDqSB1bWEgZnVuw6fDo28gZG8gcGFjb3RlIFIgcXVlIMOpIHVzYWRhIHBhcmEgc2VsZWNpb25hciB2YXJpw6F2ZWlzIGRlIHF1YWRybyBkZSBkYWRvcyBwb3Igbm9tZS/DrW5kaWNlIGUgdGFtYsOpbSDDqSB1c2FkYSBwYXJhIHJlbm9tZWFyIHZhcmnDoXZlaXMgYW8gc2VsZWNpb25hciBlIGRlc2NhcnRhciB2YXJpw6F2ZWlzIHBvciBub21lLg0KDQpgYGB7cn0NCiMgU2VsZWNpb25lIGFzIGNvbHVuYXMgZGUgcGHDrXMgZSBjb250aW5lbnRlDQpnYXBtaW5kZXIgJT4lDQogIHNlbGVjdChjb3VudHJ5LCBjb250aW5lbnQpDQoNCiMgQXJtYXplbmUgbyByZXN1bHRhZG8gZW0gdW1hIHZhcmnDoXZlbCBjaGFtYWRhIGNvdW50cnlfY29uDQpjb3VudHJ5X2NvbiA8LSBnYXBtaW5kZXIgJT4lDQogIHNlbGVjdChjb3VudHJ5LCBjb250aW5lbnQpDQpgYGANCg0KIyMjIDQuICoqTyBWZXJibyBGaWx0ZXIqKg0KDQpBIGZ1bsOnw6NvIFtmaWx0ZXIoKV0oaHR0cHM6Ly9zcGFya2J5ZXhhbXBsZXMuY29tL3ItcHJvZ3JhbW1pbmcvci1kcGx5ci1maWx0ZXIvKSBkbyBwYWNrYWdlICoqZHBseXIqKiDDqSB1c2FkYSBwYXJhIGZpbHRyYXIgYXMgbGluaGFzIGRvIHF1YWRybyBkZSBkYWRvcyBlbSBSLiBPYnNlcnZlIHF1ZSBmaWx0ZXIoKSBuw6NvIGZpbHRyYSBvcyBkYWRvcywgZW0gdmV6IGRpc3NvLCByZXTDqW0gdG9kYXMgYXMgbGluaGFzIHF1ZSBzYXRpc2ZhemVtIGEgY29uZGnDp8OjbyBlc3BlY2lmaWNhZGEuDQoNCmBgYHtyfQ0KIyBGaWx0cmFyIG8gY29uanVudG8gZGUgZGFkb3MgZ2FwbWluZGVyIHBhcmEgbyBhbm8gZGUgMTk2Mg0KZ2FwbWluZGVyICU+JQ0KICBmaWx0ZXIoeWVhciA9PSAxOTYyKQ0KDQojIEZpbHRybyBwYXJhIENoaW5hIGVtIDIwMDINCmdhcG1pbmRlciAlPiUNCiAgZmlsdGVyKHllYXIgPT0gMjAwMiwgY291bnRyeSA9PSAiQ2hpbmEiKQ0KYGBgDQoNCg0K</div>
 
 
 
