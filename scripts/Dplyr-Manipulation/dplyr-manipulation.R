@@ -36,3 +36,83 @@ gapminder %>%
 # Filter for China in 2002
 gapminder %>%
   filter(year == 2002, country == "China")
+
+
+## The Arrange Verb
+
+# Sort in ascending order of lifeExp
+gapminder %>%
+  arrange(lifeExp)
+
+# Sort in descending order of lifeExp and select the top fifteen
+gapminder %>%
+  arrange(desc(lifeExp)) %>%
+  slice(1:15)
+
+# Filter for the year 1962,
+# then arrange in descending order of population
+gapminder %>%
+  filter(year == 1962) %>%
+  arrange(desc(pop))
+
+
+## The Mutate Verb
+
+# Use mutate to chance lifeExp to be in months
+gapminder %>%
+  mutate(lifeExp = 12 * lifeExp)
+
+# Use mutate to create a new column called lifeExpMonths
+gapminder %>%
+  mutate(lifeExpMonths = 12 * lifeExp)
+
+# Filter, mutate and arrange the gapminder dataset
+# Retrive the live expectancy in months for the year 2007.
+# Store the result in a new column called lifeExpMonths
+# Sort the result in descending order
+gapminder %>%
+  filter(year == 2007) %>%
+  mutate(lifeExpMonths = 12 * lifeExp) %>%
+  arrange(desc(lifeExpMonths))
+
+
+## The Summarize Verb
+
+# Summarize to find the median life expectancy
+gapminder %>%
+  summarise(medianLifeExp = median(lifeExp))
+
+# Filter for 1962 then summarize  the median life expectancy
+gapminder %>%
+  filter(year == 1962) %>%
+  summarise(medianLifeExp = median(lifeExp))
+
+# Filter for 1962 then summarize the median life expectancy
+# and the maximum GDP per capita
+gapminder %>%
+  filter(year == 1962) %>%
+  summarise(medianLifeExp = median(lifeExp), maxGdpPerCap = max(gdpPercap))
+
+
+## The Group_by Verb
+
+# Find median life expectancy and maximum GDP per capita in each year
+gapminder %>%
+  group_by(year) %>%
+  summarise(medianLifeExp = median(lifeExp),
+            maxGdpPerCap = max(gdpPercap))
+
+# Find median life expectancy and maximum GDP per capita
+# in each continent in 1962
+gapminder %>%
+  filter(year == 1962) %>%
+  group_by(continent) %>%
+  summarise(medianLifeExp = median(lifeExp),
+            maxGdpPerCap = max(gdpPercap))
+
+# Find median life expectancy and maximum GDP per capita
+# in each continent/year combination
+gapminder %>%
+  group_by(year, continent) %>%
+  summarise(medianLifeExp = median(lifeExp),
+            maxGdpPerCap = max(gdpPercap))
